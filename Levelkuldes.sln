@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levelkuldes", "Levelkuldes\Levelkuldes.csproj", "{9EBA2905-BDD3-4DFF-849E-45AC29772369}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EBA2905-BDD3-4DFF-849E-45AC29772369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBA2905-BDD3-4DFF-849E-45AC29772369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBA2905-BDD3-4DFF-849E-45AC29772369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBA2905-BDD3-4DFF-849E-45AC29772369}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BAB7473-3EFD-45D2-8843-5430AD18003A}
+	EndGlobalSection
+EndGlobal

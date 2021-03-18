@@ -2,9 +2,9 @@
 {
     public interface IMessageView
     {
-        string felado { get; }
+        string Felado { get; }
         string errorFelado { set; }
-        string targy { get; }
+        string Targy { get; }
         string errorTargy { set; }
         string uzenetHTML { set; }
         void ShowError();

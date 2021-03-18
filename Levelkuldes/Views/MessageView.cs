@@ -11,9 +11,9 @@ namespace Levelkuldes.Views
             InitializeComponent();
         }
 
-        public string felado => FeladoTextBox.Text;
+        public string Felado => FeladoTextBox.Text;
         public string errorFelado { set => errorPFelado.SetError(FeladoTextBox, value); }
-        public string targy => TargyTextBox.Text;
+        public string Targy => TargyTextBox.Text;
         public string errorTargy { set => errorPTargy.SetError(TargyTextBox, value); }
         public string uzenetHTML { set => webBrowser1.Navigate(value); }
         public void ShowError()

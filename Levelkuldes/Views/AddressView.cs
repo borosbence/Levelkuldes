@@ -11,7 +11,7 @@ namespace Levelkuldes.Views
             InitializeComponent();
         }
 
-        public string cimzettFajlNev { get => FajlLabel.Text; set => FajlLabel.Text = value; }
+        public string cimzettFajl { get => FajlLabel.Text; set => FajlLabel.Text = value; }
         public string errorCimzettFajl
         {
             set

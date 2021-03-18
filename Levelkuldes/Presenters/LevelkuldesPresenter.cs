@@ -30,7 +30,7 @@ namespace Levelkuldes.Presenters
         public void LoadAddresses(string fajlUtvonal, string fajlNev)
         {
             model.ToAddresses = null;
-            addressView.cimzettFajlNev = fajlNev;
+            addressView.cimzettFajl = fajlNev;
             var fileExtension = Path.GetExtension(fajlNev);
             using (var sr = new StreamReader(fajlUtvonal))
             {
@@ -82,8 +82,8 @@ namespace Levelkuldes.Presenters
                 return;
             }
             
-            model.From = messageView.felado;
-            model.Subject = messageView.targy;
+            model.From = messageView.Felado;
+            model.Subject = messageView.Targy;
 
             addressView.eredmenyKimenet = "";
 
@@ -114,6 +114,7 @@ namespace Levelkuldes.Presenters
                                                    "Hiba: " + ex.Message + Environment.NewLine +
                                                    "***************************************" + Environment.NewLine;
                 }
+                mail.To.Clear();
             }
         }
 

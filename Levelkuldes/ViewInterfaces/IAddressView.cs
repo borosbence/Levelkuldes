@@ -2,7 +2,7 @@
 {
     public interface IAddressView
     {
-        string cimzettFajlNev { get; set; }
+        string cimzettFajl { get; set; }
         string errorCimzettFajl { set; }
         int BeolvasottElemek { set; }
         string eredmenyKimenet { get; set; }

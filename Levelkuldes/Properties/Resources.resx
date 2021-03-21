@@ -121,11 +121,17 @@
   <data name="AccountAttribute_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AccountAttribute_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AdatokImportalasa" xml:space="preserve">
+    <value>Adatok importálása szükséges.</value>
+  </data>
   <data name="Address_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Address_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddUserGroup_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddUserGroup_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CimzettekBetoltve" xml:space="preserve">
+    <value>Címzettek betöltve.</value>
   </data>
   <data name="CloseSolution_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseSolution_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -141,6 +147,15 @@
   </data>
   <data name="KotelezoMezo" xml:space="preserve">
     <value>A mező kitöltése kötelező.</value>
+  </data>
+  <data name="LevelBetoltve" xml:space="preserve">
+    <value>Levél betöltve.</value>
+  </data>
+  <data name="LevelekElkuldve" xml:space="preserve">
+    <value>Levelek elküldve.</value>
+  </data>
+  <data name="LevelkuldesFolyamat" xml:space="preserve">
+    <value>Levelek küldése folyamatban...</value>
   </data>
   <data name="Mail_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mail_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

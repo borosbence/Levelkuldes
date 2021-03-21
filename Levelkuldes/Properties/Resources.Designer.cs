@@ -71,6 +71,15 @@ namespace Levelkuldes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adatok importálása szükséges..
+        /// </summary>
+        public static string AdatokImportalasa {
+            get {
+                return ResourceManager.GetString("AdatokImportalasa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Address_16x {
@@ -87,6 +96,15 @@ namespace Levelkuldes.Properties {
             get {
                 object obj = ResourceManager.GetObject("AddUserGroup_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Címzettek betöltve..
+        /// </summary>
+        public static string CimzettekBetoltve {
+            get {
+                return ResourceManager.GetString("CimzettekBetoltve", resourceCulture);
             }
         }
         
@@ -134,6 +152,33 @@ namespace Levelkuldes.Properties {
         public static string KotelezoMezo {
             get {
                 return ResourceManager.GetString("KotelezoMezo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levél betöltve..
+        /// </summary>
+        public static string LevelBetoltve {
+            get {
+                return ResourceManager.GetString("LevelBetoltve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levelek elküldve..
+        /// </summary>
+        public static string LevelekElkuldve {
+            get {
+                return ResourceManager.GetString("LevelekElkuldve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Levelek küldése folyamatban....
+        /// </summary>
+        public static string LevelkuldesFolyamat {
+            get {
+                return ResourceManager.GetString("LevelkuldesFolyamat", resourceCulture);
             }
         }
         

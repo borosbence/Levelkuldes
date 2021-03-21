@@ -25,13 +25,13 @@ namespace Levelkuldes.Presenters
             messageView = messageV;
             addressView = addressV;
             model = new EmailMessage();
-            mainView.Allapot = "Adatok importálása szükséges.";
+            mainView.Allapot = Resources.AdatokImportalasa;
         }
 
         public void LoadMessage(string fajlUtvonal)
         {
             messageView.uzenetHTML = fajlUtvonal;
-            mainView.Allapot = "Levél betöltve.";
+            mainView.Allapot = Resources.LevelBetoltve;
             model.HTMLBody = File.ReadAllText(fajlUtvonal);
         }
 
@@ -39,7 +39,7 @@ namespace Levelkuldes.Presenters
         {
             model.ToAddresses = new List<string>();
             addressView.cimzettFajl = fajlNev;
-            mainView.Allapot = "Címzettek betöltve.";
+            mainView.Allapot = Resources.CimzettekBetoltve;
 
             var fileExtension = Path.GetExtension(fajlNev);
             using (var sr = new StreamReader(fajlUtvonal))
@@ -96,7 +96,7 @@ namespace Levelkuldes.Presenters
                 return;
             }
 
-            mainView.Allapot = "Levelek küldése folyamatban...";
+            mainView.Allapot = Resources.LevelkuldesFolyamat;
             addressView.eredmenyKimenet = "";
 
             _bw = new BackgroundWorker();
@@ -110,7 +110,6 @@ namespace Levelkuldes.Presenters
 
         void _bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            #region Levélküldés
             model.From = messageView.Felado;
             model.Subject = messageView.Targy;
 
@@ -128,14 +127,14 @@ namespace Levelkuldes.Presenters
             mail.IsBodyHtml = true;
 
             int counter = 0;
-            string eredmeny = "";
+            string eredmeny = null;
             foreach (var address in model.ToAddresses)
             {
                 mail.To.Add(address);
                 try
                 {
-                    System.Threading.Thread.Sleep(1000);
-                    //smtpClient.Send(mail);
+                    // System.Threading.Thread.Sleep(1000);
+                    smtpClient.Send(mail);
                     eredmeny = $"Sikeres üzenetküldés ide: {address}" + Environment.NewLine;
                 }
                 catch (Exception ex)
@@ -145,12 +144,10 @@ namespace Levelkuldes.Presenters
                                 "***************************************" + Environment.NewLine;
                 }
                 mail.To.Clear();
-
                 counter++;
                 int percentage = counter * 100 / model.ToAddresses.Count;
                 _bw.ReportProgress(percentage, eredmeny);
             }
-            #endregion
         }
 
         void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -161,7 +158,7 @@ namespace Levelkuldes.Presenters
         void _bw_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             mainView.ShowProgress(100);
-            mainView.Allapot = "Levelek elküldve";
+            mainView.Allapot = Resources.LevelekElkuldve;
         }
     }
 }

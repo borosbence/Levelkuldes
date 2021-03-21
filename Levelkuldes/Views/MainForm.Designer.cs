@@ -30,14 +30,14 @@ namespace Levelkuldes.Views
         private void InitializeComponent()
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.AllapotLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.AllapotProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fajlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kilepesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cimzettekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cimzettekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sugoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nevjegyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -53,24 +53,24 @@ namespace Levelkuldes.Views
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
+            this.AllapotProgressBar,
+            this.AllapotLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // AllapotLabel
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.AllapotLabel.Name = "AllapotLabel";
+            this.AllapotLabel.Size = new System.Drawing.Size(45, 17);
+            this.AllapotLabel.Text = "Állapot";
             // 
-            // toolStripProgressBar1
+            // AllapotProgressBar
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.AllapotProgressBar.Name = "AllapotProgressBar";
+            this.AllapotProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // menuStrip1
             // 
@@ -109,14 +109,6 @@ namespace Levelkuldes.Views
             this.importToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.importToolStripMenuItem.Text = "Import";
             // 
-            // cimzettekToolStripMenuItem
-            // 
-            this.cimzettekToolStripMenuItem.Image = global::Levelkuldes.Properties.Resources.AddUserGroup_16x;
-            this.cimzettekToolStripMenuItem.Name = "cimzettekToolStripMenuItem";
-            this.cimzettekToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.cimzettekToolStripMenuItem.Text = "Címzettek";
-            this.cimzettekToolStripMenuItem.Click += new System.EventHandler(this.cimzettekToolStripMenuItem_Click);
-            // 
             // levelToolStripMenuItem
             // 
             this.levelToolStripMenuItem.Image = global::Levelkuldes.Properties.Resources.ReceiveMail_16x;
@@ -124,6 +116,14 @@ namespace Levelkuldes.Views
             this.levelToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.levelToolStripMenuItem.Text = "Levél";
             this.levelToolStripMenuItem.Click += new System.EventHandler(this.levelToolStripMenuItem_Click);
+            // 
+            // cimzettekToolStripMenuItem
+            // 
+            this.cimzettekToolStripMenuItem.Image = global::Levelkuldes.Properties.Resources.AddUserGroup_16x;
+            this.cimzettekToolStripMenuItem.Name = "cimzettekToolStripMenuItem";
+            this.cimzettekToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.cimzettekToolStripMenuItem.Text = "Címzettek";
+            this.cimzettekToolStripMenuItem.Click += new System.EventHandler(this.cimzettekToolStripMenuItem_Click);
             // 
             // sugoToolStripMenuItem
             // 
@@ -210,8 +210,8 @@ namespace Levelkuldes.Views
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel AllapotLabel;
+        private System.Windows.Forms.ToolStripProgressBar AllapotProgressBar;
         private System.Windows.Forms.ToolStripMenuItem sugoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nevjegyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fajlToolStripMenuItem;

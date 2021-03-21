@@ -2,6 +2,8 @@
 using Levelkuldes.Properties;
 using Levelkuldes.ViewInterfaces;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -10,27 +12,35 @@ namespace Levelkuldes.Presenters
 {
     public class LevelkuldesPresenter
     {
+        private IMainView mainView;
         private IAddressView addressView;
         private IMessageView messageView;
         private EmailMessage model;
 
-        public LevelkuldesPresenter(IMessageView messageView, IAddressView addressView)
+        private BackgroundWorker _bw;
+
+        public LevelkuldesPresenter(IMainView mainV, IMessageView messageV, IAddressView addressV)
         {
-            this.messageView = messageView;
-            this.addressView = addressView;
+            mainView = mainV;
+            messageView = messageV;
+            addressView = addressV;
             model = new EmailMessage();
+            mainView.Allapot = "Adatok importálása szükséges.";
         }
 
         public void LoadMessage(string fajlUtvonal)
         {
             messageView.uzenetHTML = fajlUtvonal;
+            mainView.Allapot = "Levél betöltve.";
             model.HTMLBody = File.ReadAllText(fajlUtvonal);
         }
 
         public void LoadAddresses(string fajlUtvonal, string fajlNev)
         {
-            model.ToAddresses = null;
+            model.ToAddresses = new List<string>();
             addressView.cimzettFajl = fajlNev;
+            mainView.Allapot = "Címzettek betöltve.";
+
             var fileExtension = Path.GetExtension(fajlNev);
             using (var sr = new StreamReader(fajlUtvonal))
             {
@@ -39,6 +49,10 @@ namespace Levelkuldes.Presenters
                     if (fileExtension == ".txt")
                     {
                         model.ToAddresses.Add(sr.ReadLine());
+                    }
+                    else if (fileExtension == ".csv")
+                    {
+
                     }
                 }
             }
@@ -81,43 +95,73 @@ namespace Levelkuldes.Presenters
             {
                 return;
             }
-            
+
+            mainView.Allapot = "Levelek küldése folyamatban...";
+            addressView.eredmenyKimenet = "";
+
+            _bw = new BackgroundWorker();
+            _bw.WorkerReportsProgress = true;
+            _bw.DoWork += new DoWorkEventHandler(_bw_DoWork);
+            _bw.ProgressChanged += new ProgressChangedEventHandler(_bw_ProgressChanged);
+            _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_bw_Completed);
+
+            _bw.RunWorkerAsync();
+        }
+
+        void _bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            #region Levélküldés
             model.From = messageView.Felado;
             model.Subject = messageView.Targy;
-
-            addressView.eredmenyKimenet = "";
 
             // https://myaccount.google.com/lesssecureapps
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.EnableSsl = true;
-            smtpClient.Credentials = new NetworkCredential("*****@gmail.com", "*****");
+            smtpClient.Credentials = new NetworkCredential("****@gmail.com", "****");
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("*****@gmail.com", model.From);
+            mail.From = new MailAddress("****@gmail.com", model.From);
             mail.Subject = model.Subject;
             mail.Body = model.HTMLBody;
             mail.IsBodyHtml = true;
 
+            int counter = 0;
+            string eredmeny = "";
             foreach (var address in model.ToAddresses)
             {
                 mail.To.Add(address);
                 try
                 {
-                    smtpClient.Send(mail);
-                    addressView.eredmenyKimenet += $"Sikeres üzenetküldés ide: {address}" + Environment.NewLine;
+                    System.Threading.Thread.Sleep(1000);
+                    //smtpClient.Send(mail);
+                    eredmeny = $"Sikeres üzenetküldés ide: {address}" + Environment.NewLine;
                 }
                 catch (Exception ex)
                 {
-                    addressView.eredmenyKimenet += "***************************************" + Environment.NewLine +
-                                                   "Hiba: " + ex.Message + Environment.NewLine +
-                                                   "***************************************" + Environment.NewLine;
+                    eredmeny = "***************************************" + Environment.NewLine +
+                                "Hiba: " + ex.Message + Environment.NewLine +
+                                "***************************************" + Environment.NewLine;
                 }
                 mail.To.Clear();
+
+                counter++;
+                int percentage = counter * 100 / model.ToAddresses.Count;
+                _bw.ReportProgress(percentage, eredmeny);
             }
+            #endregion
         }
 
+        void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            mainView.ShowProgress(e.ProgressPercentage, e.UserState.ToString());
+        }
 
+        void _bw_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            mainView.ShowProgress(100);
+            mainView.Allapot = "Levelek elküldve";
+        }
     }
 }

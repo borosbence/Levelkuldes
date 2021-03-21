@@ -6,7 +6,7 @@ namespace Levelkuldes.Models
     {
         public string From { get; set; }
         public string Subject { get; set; }
-        public List<string> ToAddresses = new List<string>();
+        public List<string> ToAddresses { get; set; }
         public string HTMLBody { get; set; }
     }
 }

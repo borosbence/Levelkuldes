@@ -1,14 +1,16 @@
 ﻿using Levelkuldes.Presenters;
+using Levelkuldes.ViewInterfaces;
 using System;
 using System.Windows.Forms;
 
 namespace Levelkuldes.Views
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
         private MessageView messageView;
         private AddressView addressView;
         private LevelkuldesPresenter presenter;
+
         public MainForm()
         {
             InitializeComponent();
@@ -19,7 +21,8 @@ namespace Levelkuldes.Views
             addressView.Dock = DockStyle.Fill;
             tabPage1.Controls.Add(messageView);
             tabPage2.Controls.Add(addressView);
-            presenter = new LevelkuldesPresenter(messageView, addressView);
+
+            presenter = new LevelkuldesPresenter(this, messageView, addressView);
         }
 
         private void kilepesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,7 +60,19 @@ namespace Levelkuldes.Views
 
         private void LevelKuldesButton_Click(object sender, EventArgs e)
         {
+            AllapotProgressBar.Value = 0;
             presenter.SendMail();
+        }
+
+        public string Allapot { set => AllapotLabel.Text = value; }
+
+        public void ShowProgress(int progressPercentage, string userState = null)
+        {
+            AllapotProgressBar.Value = progressPercentage;
+            if (!string.IsNullOrWhiteSpace(userState))
+            {
+                addressView.eredmenyKimenet += userState;
+            }
         }
     }
 }

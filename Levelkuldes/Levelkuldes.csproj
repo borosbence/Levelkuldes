@@ -50,6 +50,7 @@
     <Compile Include="Presenters\LevelkuldesPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewInterfaces\IMainView.cs" />
     <Compile Include="ViewInterfaces\IMessageView.cs" />
     <Compile Include="ViewInterfaces\IAddressView.cs" />
     <Compile Include="Views\AddressView.cs">

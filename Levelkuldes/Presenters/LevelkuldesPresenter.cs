@@ -18,6 +18,8 @@ namespace Levelkuldes.Presenters
         private EmailMessage model;
 
         private BackgroundWorker _bw;
+        private string fileExtension;
+        private int colIndex;
 
         public LevelkuldesPresenter(IMainView mainV, IMessageView messageV, IAddressView addressV)
         {
@@ -41,19 +43,17 @@ namespace Levelkuldes.Presenters
             addressView.cimzettFajl = fajlNev;
             mainView.Allapot = Resources.CimzettekBetoltve;
 
-            var fileExtension = Path.GetExtension(fajlNev);
+            fileExtension = Path.GetExtension(fajlNev);
             using (var sr = new StreamReader(fajlUtvonal))
             {
+                addressView.Fejlecek = null;
+                if (fileExtension == ".csv")
+                {
+                    addressView.Fejlecek = sr.ReadLine().Split(';');
+                }
                 while (!sr.EndOfStream)
                 {
-                    if (fileExtension == ".txt")
-                    {
-                        model.ToAddresses.Add(sr.ReadLine());
-                    }
-                    else if (fileExtension == ".csv")
-                    {
-
-                    }
+                    model.ToAddresses.Add(sr.ReadLine());
                 }
             }
             addressView.BeolvasottElemek = model.ToAddresses.Count;
@@ -98,6 +98,7 @@ namespace Levelkuldes.Presenters
 
             mainView.Allapot = Resources.LevelkuldesFolyamat;
             addressView.eredmenyKimenet = "";
+            colIndex = addressView.cimzettOszlop;
 
             _bw = new BackgroundWorker();
             _bw.WorkerReportsProgress = true;
@@ -128,14 +129,20 @@ namespace Levelkuldes.Presenters
 
             int counter = 0;
             string eredmeny = null;
-            foreach (var address in model.ToAddresses)
+            foreach (var row in model.ToAddresses)
             {
-                mail.To.Add(address);
+                string mailAddress = row;
+                if (fileExtension == ".csv")
+                {
+                    var lineArray = row.Split(';');
+                    mailAddress = lineArray[colIndex];
+                }
                 try
                 {
-                    // System.Threading.Thread.Sleep(1000);
-                    smtpClient.Send(mail);
-                    eredmeny = $"Sikeres üzenetküldés ide: {address}" + Environment.NewLine;
+                    mail.To.Add(mailAddress);
+                    System.Threading.Thread.Sleep(1000);
+                    // smtpClient.Send(mail);
+                    eredmeny = $"Sikeres üzenetküldés ide: {mailAddress}" + Environment.NewLine;
                 }
                 catch (Exception ex)
                 {

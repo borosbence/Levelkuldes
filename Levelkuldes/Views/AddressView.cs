@@ -25,5 +25,11 @@ namespace Levelkuldes.Views
         }
         public int BeolvasottElemek { set => OsszCimzettLabel.Text = value.ToString(); }
         public string eredmenyKimenet { get => textBox1.Text; set => textBox1.Text = value; }
+        public string[] Fejlecek 
+        { 
+            get => (string[])FejlecCmbBox.DataSource;
+            set => FejlecCmbBox.DataSource = value; 
+        }
+        public int cimzettOszlop => FejlecCmbBox.SelectedIndex;
     }
 }

@@ -44,8 +44,7 @@ namespace Levelkuldes.Views
         private void cimzettekToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "Címzettek megnyitása...";
-            openFileDialog1.Filter = "Egyszerű szöveg (*.txt)|*.txt|" +
-                "CSV (pontosvesszővel tagolt) (*.csv)|*.csv";
+            openFileDialog1.Filter = "Egyszerű szöveg (*.txt)|*.txt|CSV (pontosvesszővel tagolt) (*.csv)|*.csv";
             var dr = openFileDialog1.ShowDialog();
             if (dr == DialogResult.OK)
             {

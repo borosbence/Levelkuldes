@@ -36,7 +36,7 @@ namespace Levelkuldes.Views
             this.label2 = new System.Windows.Forms.Label();
             this.FajlLabel = new System.Windows.Forms.Label();
             this.OsszCimzettLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.FejlecCmbBox = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.errorPFajl = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
@@ -54,7 +54,7 @@ namespace Levelkuldes.Views
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.FajlLabel, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.OsszCimzettLabel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.FejlecCmbBox, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -116,11 +116,11 @@ namespace Levelkuldes.Views
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(184, 69);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 10;
+            this.FejlecCmbBox.FormattingEnabled = true;
+            this.FejlecCmbBox.Location = new System.Drawing.Point(184, 69);
+            this.FejlecCmbBox.Name = "comboBox1";
+            this.FejlecCmbBox.Size = new System.Drawing.Size(200, 21);
+            this.FejlecCmbBox.TabIndex = 10;
             // 
             // textBox1
             // 
@@ -162,7 +162,7 @@ namespace Levelkuldes.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label OsszCimzettLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox FejlecCmbBox;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label FajlLabel;
         private System.Windows.Forms.ErrorProvider errorPFajl;

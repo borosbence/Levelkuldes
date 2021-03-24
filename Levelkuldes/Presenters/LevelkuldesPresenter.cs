@@ -140,8 +140,8 @@ namespace Levelkuldes.Presenters
                 try
                 {
                     mail.To.Add(mailAddress);
-                    System.Threading.Thread.Sleep(1000);
-                    // smtpClient.Send(mail);
+                    // System.Threading.Thread.Sleep(1000);
+                    smtpClient.Send(mail);
                     eredmeny = $"Sikeres üzenetküldés ide: {mailAddress}" + Environment.NewLine;
                 }
                 catch (Exception ex)

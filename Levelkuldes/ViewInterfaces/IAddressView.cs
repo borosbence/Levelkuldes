@@ -8,7 +8,7 @@ namespace Levelkuldes.ViewInterfaces
         string errorCimzettFajl { set; }
         int BeolvasottElemek { set; }
         string eredmenyKimenet { get; set; }
-        string[] Fejlecek { get; set; }
+        string[] fejlecek { get; set; }
         int cimzettOszlop { get; }
     }
 }

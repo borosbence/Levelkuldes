@@ -8,7 +8,7 @@ namespace Levelkuldes.ViewInterfaces
 {
     public interface IMainView
     {
-        string Allapot { set; }
+        string StatusText { set; }
         void ShowProgress(int progressPercentage, string userState = null);
     }
 }

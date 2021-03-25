@@ -17,7 +17,7 @@ namespace Levelkuldes.Presenters
         private IMessageView messageView;
         private EmailMessage model;
 
-        private BackgroundWorker _bw;
+        private BackgroundWorker bw;
         private string fileExtension;
         private int colIndex;
 
@@ -27,13 +27,13 @@ namespace Levelkuldes.Presenters
             messageView = messageV;
             addressView = addressV;
             model = new EmailMessage();
-            mainView.Allapot = Resources.AdatokImportalasa;
+            mainView.StatusText = Resources.ImportalasSzukseges;
         }
 
         public void LoadMessage(string fajlUtvonal)
         {
-            messageView.uzenetHTML = fajlUtvonal;
-            mainView.Allapot = Resources.LevelBetoltve;
+            messageView.uzenetFajl = fajlUtvonal;
+            mainView.StatusText = Resources.LevelBetoltve;
             model.HTMLBody = File.ReadAllText(fajlUtvonal);
         }
 
@@ -41,15 +41,15 @@ namespace Levelkuldes.Presenters
         {
             model.ToAddresses = new List<string>();
             addressView.cimzettFajl = fajlNev;
-            mainView.Allapot = Resources.CimzettekBetoltve;
+            mainView.StatusText = Resources.CimzettekBetoltve;
 
             fileExtension = Path.GetExtension(fajlNev);
             using (var sr = new StreamReader(fajlUtvonal))
             {
-                addressView.Fejlecek = null;
+                addressView.fejlecek = null;
                 if (fileExtension == ".csv")
                 {
-                    addressView.Fejlecek = sr.ReadLine().Split(';');
+                    addressView.fejlecek = sr.ReadLine().Split(';');
                 }
                 while (!sr.EndOfStream)
                 {
@@ -96,20 +96,19 @@ namespace Levelkuldes.Presenters
                 return;
             }
 
-            mainView.Allapot = Resources.LevelkuldesFolyamat;
+            mainView.StatusText = Resources.LevelekKuldese;
             addressView.eredmenyKimenet = "";
             colIndex = addressView.cimzettOszlop;
 
-            _bw = new BackgroundWorker();
-            _bw.WorkerReportsProgress = true;
-            _bw.DoWork += new DoWorkEventHandler(_bw_DoWork);
-            _bw.ProgressChanged += new ProgressChangedEventHandler(_bw_ProgressChanged);
-            _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_bw_Completed);
-
-            _bw.RunWorkerAsync();
+            bw = new BackgroundWorker();
+            bw.WorkerReportsProgress = true;
+            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_Completed);
+            bw.RunWorkerAsync();
         }
 
-        void _bw_DoWork(object sender, DoWorkEventArgs e)
+        void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             model.From = messageView.Felado;
             model.Subject = messageView.Targy;
@@ -127,7 +126,7 @@ namespace Levelkuldes.Presenters
             mail.Body = model.HTMLBody;
             mail.IsBodyHtml = true;
 
-            int counter = 0;
+            double counter = 0;
             string eredmeny = null;
             foreach (var row in model.ToAddresses)
             {
@@ -150,22 +149,26 @@ namespace Levelkuldes.Presenters
                                 "Hiba: " + ex.Message + Environment.NewLine +
                                 "***************************************" + Environment.NewLine;
                 }
-                mail.To.Clear();
                 counter++;
-                int percentage = counter * 100 / model.ToAddresses.Count;
-                _bw.ReportProgress(percentage, eredmeny);
+                double percentage = (counter / model.ToAddresses.Count) * 100;
+                // itt lehet int típus a counter változó
+                // int percentage = counter * 100 / model.ToAddresses.Count;
+                bw.ReportProgress(Convert.ToInt32(percentage), eredmeny);
+                // Kiüríti a címzettek listáját, hogy ne ismételje a leveleket
+                mail.To.Clear();
             }
         }
 
-        void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             mainView.ShowProgress(e.ProgressPercentage, e.UserState.ToString());
+            mainView.StatusText = Resources.LevelekKuldese + " " + e.ProgressPercentage + "%";
         }
 
-        void _bw_Completed(object sender, RunWorkerCompletedEventArgs e)
+        void bw_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             mainView.ShowProgress(100);
-            mainView.Allapot = Resources.LevelekElkuldve;
+            mainView.StatusText = Resources.LevelekElkuldve;
         }
     }
 }

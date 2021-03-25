@@ -6,7 +6,7 @@
         string errorFelado { set; }
         string Targy { get; }
         string errorTargy { set; }
-        string uzenetHTML { set; }
+        string uzenetFajl { set; }
         void ShowError();
     }
 }

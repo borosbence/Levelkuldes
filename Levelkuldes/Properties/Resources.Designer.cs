@@ -71,15 +71,6 @@ namespace Levelkuldes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adatok importálása szükséges..
-        /// </summary>
-        public static string AdatokImportalasa {
-            get {
-                return ResourceManager.GetString("AdatokImportalasa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Address_16x {
@@ -147,6 +138,15 @@ namespace Levelkuldes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adatok importálása szükséges..
+        /// </summary>
+        public static string ImportalasSzukseges {
+            get {
+                return ResourceManager.GetString("ImportalasSzukseges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A mező kitöltése kötelező..
         /// </summary>
         public static string KotelezoMezo {
@@ -176,9 +176,9 @@ namespace Levelkuldes.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Levelek küldése folyamatban....
         /// </summary>
-        public static string LevelkuldesFolyamat {
+        public static string LevelekKuldese {
             get {
-                return ResourceManager.GetString("LevelkuldesFolyamat", resourceCulture);
+                return ResourceManager.GetString("LevelekKuldese", resourceCulture);
             }
         }
         

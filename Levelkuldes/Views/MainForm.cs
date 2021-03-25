@@ -63,7 +63,7 @@ namespace Levelkuldes.Views
             presenter.SendMail();
         }
 
-        public string Allapot { set => AllapotLabel.Text = value; }
+        public string StatusText { set => AllapotLabel.Text = value; }
 
         public void ShowProgress(int progressPercentage, string userState = null)
         {
